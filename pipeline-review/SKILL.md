@@ -31,20 +31,37 @@ Reviews are stored in a **Notion database** (one row per review, newest-first):
 - **API version:** Use `2022-06-28` (the `2025-09-03` version has issues with property creation)
 
 Each database row has these properties:
+
+**Results (what happened):**
+| Property | Type | Description |
+|----------|------|-------------|
+| Projects Won | $ | Revenue closed this period (Projects pipeline) |
+| Projects Lost | $ | Revenue lost this period (Projects pipeline) |
+| NB Won | $ | New logos landed — annual value (New Business pipeline) |
+| NB Lost | $ | New logos lost — annual value (New Business pipeline) |
+
+**Forecast (what's coming):**
+| Property | Type | Description |
+|----------|------|-------------|
+| Projects Weighted | $ | Weighted Projects pipeline (probability × value) |
+| NB Weighted | $ | Weighted New Business pipeline |
+
+**Leading indicators (is the machine working):**
+| Property | Type | Description |
+|----------|------|-------------|
+| Deals Added | number | Net new deals entering pipeline this week (both pipelines) |
+| Deals Advanced | number | Deals that moved forward a stage this week (both pipelines) |
+
+**Meta:**
 | Property | Type | Description |
 |----------|------|-------------|
 | Week | title | e.g. "Feb 27 – Mar 05, 2026" |
 | Date | date | Review period (start + end) |
-| Projects Value | number ($) | Total open Projects pipeline |
-| Projects Weighted | number ($) | Weighted Projects pipeline |
-| NB Value | number ($) | Total open New Business pipeline |
-| NB Weighted | number ($) | Weighted New Business pipeline |
-| Won | number ($) | $ won this period |
-| Lost | number ($) | $ lost this period |
-| Deal Count | number | Total open deals (Projects + NB) |
 | Status | select | Draft / Published |
 
 The full narrative review goes in the **page body** (blocks) of each row.
+
+**Design rationale:** Projects and NB are split because they measure different things — Projects is transactional revenue being invoiced, NB is annual account value. Combining them would be misleading. Unweighted pipeline value is omitted (vanity metric — weighted is what matters for forecasting). Deal count is omitted (doesn't trend meaningfully; Deals Added and Deals Advanced are better pulse checks).
 
 Skip Notion output for ad-hoc (chat-only) reviews.
 
@@ -133,13 +150,14 @@ page = POST /v1/pages {
     "properties": {
         "Week": {"title": [{"text": {"content": "Feb 27 – Mar 05, 2026"}}]},
         "Date": {"date": {"start": "2026-02-27", "end": "2026-03-05"}},
-        "Projects Value": {"number": 469132},
+        "Projects Won": {"number": 2306},
+        "Projects Lost": {"number": 9750},
         "Projects Weighted": {"number": 191921},
-        "NB Value": {"number": 860000},
+        "NB Won": {"number": 0},
+        "NB Lost": {"number": 20000},
         "NB Weighted": {"number": 428750},
-        "Won": {"number": 2306},
-        "Lost": {"number": 9750},
-        "Deal Count": {"number": 73},
+        "Deals Added": {"number": 5},
+        "Deals Advanced": {"number": 1},
         "Status": {"select": {"name": "Published"}}
     }
 }
@@ -147,6 +165,10 @@ page = POST /v1/pages {
 # 2. Add blocks to page body (batches of 100)
 PATCH /v1/blocks/{page_id}/children {"children": [...blocks...]}
 ```
+
+**To compute Deals Added and Deals Advanced from the analysis output:**
+- **Deals Added:** Count deals in both pipelines where `add_time` falls within the review period
+- **Deals Advanced:** Count entries in `new_business_stage_movement` + any Projects deals that changed stage this period
 
 **Ad-hoc Review:**
 - Quick summary in chat only. No Notion entry.
