@@ -1,118 +1,93 @@
 # Creator Analysis — Founder-Led B2B LinkedIn Content
 
-Analysis of 4 top founder-led B2B content creators. Use this to understand the patterns, voice, and structure that work.
+Analysis of top founder-led B2B content creators. Use for voice calibration and style inspiration.
+
+---
 
 ## Tyler Denk (beehiiv) — The Build-in-Public Founder
 
 **Profile:** Co-founder/CEO of beehiiv (newsletter platform). ~100K+ followers.
 
-**Content pillars:**
-1. Building in public — raw metrics, MRR updates, investor journey
-2. Product launches — feature announcements framed as founder excitement
-3. Hiring/culture — what great candidates do, team stories
-4. Personal newsletter cross-promotion (Big Desk Energy)
-
 **Style signatures:**
-- **Radical transparency.** Shares actual revenue numbers, growth charts, KPIs. Not sanitized.
-- **Casual energy.** Uses emojis (🐝💰🙌🏽), slang ("hot NILFs"), humor to break corporate tone.
-- **Short punchy sentences.** Rarely writes walls of text. Each line earns its spot.
-- **Hook pattern:** Often starts with a bold claim or update ("18 months in and I couldn't be more bullish"), then delivers proof.
-- **Social proof loops.** "Another newsletter got acquired on beehiiv 😮‍💨" — positions user success as company success.
-- **Cross-pollination.** Uses LinkedIn to drive newsletter subs, and vice versa.
+- Radical transparency — shares actual revenue, growth charts, KPIs unfiltered
+- Casual energy — emojis, slang, humor to break corporate tone
+- Short punchy sentences — each line earns its spot
+- Hook pattern: bold claim or update first, then proof
+- Social proof loops — positions user success as company success
+- Cross-pollination — LinkedIn drives newsletter subs and vice versa
 
-**What to steal:**
-- Share real numbers (revenue, growth %, milestone timelines)
-- Frame product wins through customer success stories
-- Keep the tone conversational and unpolished — it reads as authentic
-- Use build-in-public as a recurring format, not a one-time gimmick
+**Takeaways:** Share real numbers. Frame product wins through customer stories. Keep tone conversational and unpolished. Build-in-public as a recurring format.
 
 ---
 
 ## Alex Lieberman (Morning Brew / storyarb) — The Serial Founder Thought Leader
 
-**Profile:** Co-founder of Morning Brew ($75M revenue, 4.5M subs), co-founder of storyarb (ghostwriting agency for execs), host of Founder's Journal podcast. Forbes 30 Under 30.
-
-**Content pillars:**
-1. AI/tech industry takes — provocative, opinionated commentary
-2. Founder lessons — delegation, hiring, scaling
-3. Content/media strategy — how to build audiences and marketing machines
-4. Business building transparency — storyarb updates, hiring posts
-5. Ultrathink newsletter — LinkedIn as preview/distribution
+**Profile:** Co-founder Morning Brew ($75M revenue, 4.5M subs), co-founder storyarb, Forbes 30 Under 30.
 
 **Style signatures:**
-- **Provocative hooks.** "WARNING: this is a long ass post." "Death to the PRD." Opens with tension.
-- **Opinionated and unapologetic.** Doesn't hedge — "I literally do not use my fingers to type anymore."
-- **Long-form when warranted.** Not afraid of 500+ word posts when the topic demands depth.
-- **Pattern interrupts.** Mixes formats — newsletter excerpts, image shares, original posts, reposts with commentary.
-- **Status/authority signaling done naturally.** References Morning Brew scale ($75M, 4.5M subs) as context, not flex.
-- **Engagement magnets.** "Ask me anything about this journey. I will spare no details."
+- Provocative hooks — "WARNING: this is a long ass post." Opens with tension.
+- Opinionated and unapologetic — doesn't hedge
+- Long-form when warranted — 500+ word posts when topic demands depth
+- Pattern interrupts — mixes newsletter excerpts, image shares, original posts, reposts
+- Authority signaling done naturally — references scale as context, not flex
+- Engagement magnets — "Ask me anything. I will spare no details."
 
-**What to steal:**
-- Lead with a spicy take, then back it up with substance
-- Use your track record as context (not bragging) to build credibility
-- Mix content formats — some short punchy takes, some deep dives
-- Don't be afraid of personality. Personality is the differentiator.
+**Takeaways:** Lead with spicy takes backed by substance. Mix formats. Personality is the differentiator. Use track record as context, not bragging.
 
 ---
 
 ## Jenny Rothenberg (Smooth Media) — The Industry Insider Operator
 
-**Profile:** Co-founder & COO at Smooth Media (creator management). Former Director of Growth at Morning Brew.
-
-**Content pillars:**
-1. Creator economy / media business insights
-2. Hiring and team building (frequently hiring across Smooth universe)
-3. Industry commentary — brand strategy, Gen Z marketing, advertising
-4. Network building — events, meetups, SXSW
+**Profile:** Co-founder & COO Smooth Media (creator management). Former Director of Growth, Morning Brew.
 
 **Style signatures:**
-- **Industry-insider POV.** Speaks from operator experience, not theory.
-- **Concise and direct.** Posts tend to be shorter, punchier. No fluff.
-- **Curates and amplifies.** Likes/shares industry content with brief, sharp commentary.
-- **Community-oriented.** Promotes events, team members, job openings — content serves the ecosystem.
-- **Selective posting.** Quality over quantity. Not posting daily — each post carries weight.
+- Industry-insider POV — speaks from operator experience, not theory
+- Concise and direct — shorter, punchier posts. No fluff.
+- Curates and amplifies — likes/shares industry content with sharp commentary
+- Community-oriented — promotes events, team members, job openings
+- Selective posting — quality over quantity, each post carries weight
 
-**What to steal:**
-- You don't have to post every day to be effective — make each post count
-- Amplify others in your space (team, partners, industry peers) with your commentary
-- Hiring posts and "we're building" posts humanize the company
-- Short, opinionated takes on industry trends show expertise without long essays
+**Takeaways:** You don't have to post daily. Amplify others with your commentary. Short opinionated takes show expertise without essays.
 
 ---
 
 ## Danny Sheridan (Fern) — The Technical Founder Educator
 
-**Profile:** Co-founder & CEO of Fern (YC W23) — SDKs and docs for APIs. Technical dev-tools founder.
-
-**Content pillars:**
-1. API/developer experience education — what makes great APIs (Stripe as benchmark)
-2. Customer wins — "How Merge uses Fern to ship SDKs"
-3. Hiring/team milestones — "founding frontend engineer" posts
-4. YC/startup ecosystem — community events, cohort updates
-5. Product philosophy — developer docs evolution, AI-powered documentation
+**Profile:** Co-founder & CEO Fern (YC W23) — SDKs and docs for APIs.
 
 **Style signatures:**
-- **Educational framing.** Explains complex topics accessibly. Teaches, doesn't sell.
-- **Customer-as-hero.** Highlights what customers built WITH Fern, not what Fern does alone.
-- **Understated confidence.** Doesn't need to shout. Lets the work speak.
-- **Community engagement.** Active in comments, shares team members' posts, engages YC network.
-- **Milestone storytelling.** "From YC batchmates → first 10 customers → teammate" — narrative arcs.
+- Educational framing — teaches, doesn't sell
+- Customer-as-hero — highlights what customers built WITH Fern
+- Understated confidence — lets work speak
+- Community engagement — active in comments, shares team posts
+- Milestone storytelling — "From YC batchmates → first customers → teammate"
 
-**What to steal:**
-- Use the "customer as hero" framework — your product is the enabler, they're the protagonist
-- Teach your ICP something valuable without mentioning your product
-- Milestone posts with narrative arcs (journey from A → B → C) create compelling stories
-- For technical audiences, be substantive — no fluffy motivational content
+**Takeaways:** Use "customer as hero" framework. Teach your ICP something valuable without mentioning product. Milestone posts with narrative arcs create compelling stories.
 
 ---
 
-## Cross-Creator Patterns (What They ALL Do)
+## beehiiv Company Page — Company Voice Inspiration
 
-1. **Personal voice > corporate voice.** Every one of them writes as a human, not a brand.
-2. **Consistency.** Even the less frequent posters (Jenny) maintain a recognizable cadence.
-3. **Story structure.** Even short posts have a hook → tension → resolution arc.
-4. **Vulnerability / transparency.** Sharing real numbers, real struggles, real opinions.
-5. **Community engagement.** They reply to comments, share others' content, participate in conversations.
-6. **Product subtlety.** Product is woven into stories naturally — never "Check out our new feature! Link in comments 👇"
-7. **Cross-channel synergy.** LinkedIn feeds newsletter, podcast, or other channels and vice versa.
-8. **ICP awareness.** Content is tailored to who they want to attract, not just who's already following.
+**Why it works as a company page:**
+- Personality-driven — reads like a person, not a press release
+- One-liner zingers — "mercury is in retrograde. if your newsletter goes out with a typo, blame it on that."
+- Meme-adjacent humor — "first in my bloodline to write a newsletter"
+- User celebration — "2026's most popular newsletter creators on beehiiv!"
+- Reposts founder content with company context
+- Short, punchy, never takes itself too seriously
+- Warm but witty — accessible without being corporate
+
+**Key pattern:** The company page has its OWN voice distinct from the founder. It's lighter, funnier, more playful. The founder goes deep on strategy and transparency; the company page is the fun personality layer.
+
+---
+
+## Cross-Creator Patterns
+
+1. **Personal voice over corporate voice** — always
+2. **Hook is king** — first 2 lines make or break the post
+3. **Specificity** — real numbers, real names, real stories
+4. **Product is subtle** — woven into stories, never pitched directly
+5. **Community engagement** — reply to every comment, share others' work
+6. **Vulnerability and transparency** — sharing failures alongside wins
+7. **One idea per post** — depth, not breadth
+8. **200-400 words is the sweet spot** — posts between 1,200-2,500 characters perform ~32% better than longer or shorter

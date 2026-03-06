@@ -46,12 +46,6 @@ Each database row has these properties:
 | Projects Weighted | $ | Weighted Projects pipeline (probability × value) |
 | NB Weighted | $ | Weighted New Business pipeline |
 
-**Leading indicators (is the machine working):**
-| Property | Type | Description |
-|----------|------|-------------|
-| Deals Added | number | Net new deals entering pipeline this week (both pipelines) |
-| Deals Advanced | number | Deals that moved forward a stage this week (both pipelines) |
-
 **Meta:**
 | Property | Type | Description |
 |----------|------|-------------|
@@ -61,7 +55,7 @@ Each database row has these properties:
 
 The full narrative review goes in the **page body** (blocks) of each row.
 
-**Design rationale:** Projects and NB are split because they measure different things — Projects is transactional revenue being invoiced, NB is annual account value. Combining them would be misleading. Unweighted pipeline value is omitted (vanity metric — weighted is what matters for forecasting). Deal count is omitted (doesn't trend meaningfully; Deals Added and Deals Advanced are better pulse checks).
+**Design rationale:** Projects and NB are split because they measure different things — Projects is transactional revenue being invoiced, NB is annual account value. Combining them would be misleading. Unweighted pipeline value is omitted (vanity metric — weighted is what matters for forecasting). Deal count and leading indicators (deals added/advanced) are omitted from the table — they're only actionable with deal-level context, which lives in the narrative.
 
 Skip Notion output for ad-hoc (chat-only) reviews.
 
@@ -156,8 +150,6 @@ page = POST /v1/pages {
         "NB Won": {"number": 0},
         "NB Lost": {"number": 20000},
         "NB Weighted": {"number": 428750},
-        "Deals Added": {"number": 5},
-        "Deals Advanced": {"number": 1},
         "Status": {"select": {"name": "Published"}}
     }
 }
@@ -166,9 +158,7 @@ page = POST /v1/pages {
 PATCH /v1/blocks/{page_id}/children {"children": [...blocks...]}
 ```
 
-**To compute Deals Added and Deals Advanced from the analysis output:**
-- **Deals Added:** Count deals in both pipelines where `add_time` falls within the review period
-- **Deals Advanced:** Count entries in `new_business_stage_movement` + any Projects deals that changed stage this period
+
 
 **Ad-hoc Review:**
 - Quick summary in chat only. No Notion entry.

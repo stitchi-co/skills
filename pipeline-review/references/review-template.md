@@ -5,7 +5,6 @@ Each review is a **row in the Notion database** (`6def2319-67ef-46a9-b03f-92e353
 **Row properties** (the numbers you'd chart week-over-week):
 - Results: Projects Won/Lost, NB Won/Lost ($ per pipeline)
 - Forecast: Projects Weighted, NB Weighted
-- Leading indicators: Deals Added, Deals Advanced
 
 **Page body** (blocks) carries the full narrative review below.
 
