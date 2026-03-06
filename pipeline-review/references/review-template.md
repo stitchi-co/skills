@@ -1,11 +1,13 @@
 # Pipeline Review Output Template
 
-Use this structure for the Notion page. The page should be a **rolling update** — replace content each review, not append.
+Each review is a **row in the Notion database** (`6def2319-67ef-46a9-b03f-92e3532dd3b0`).
 
-## Notion Page Structure
+- **Row properties** carry the numbers (pipeline values, won/lost, deal count).
+- **Page body** (blocks) carries the full narrative review below.
+
+## Page Body Structure
 
 ```
-# Pipeline Review — Week of {date}
 Generated: {timestamp}
 
 ## Executive Summary
@@ -71,7 +73,8 @@ For each active rep — keep supportive, not disciplinary:
 - Do NOT include start dates or tenure in the output — use tenure internally to calibrate tone only
 
 ## Activity Insights
-- Deals with zero activities (flag for attention)
+- Deals with zero activities (flag for visibility — NOT a red flag on its own)
+- Note: at Stitchi, 85% of zero-activity deals win. High-activity deals (4-20 touches) win at only 25-30%. Activity signals complexity, not momentum.
 - Overdue activities
 - Activity volume trends
 

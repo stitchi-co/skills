@@ -1,6 +1,6 @@
 ---
 name: pipeline-review
-description: "Prepare and deliver sales pipeline reviews from Pipedrive CRM data. Default: weekly pipeline review covering Projects (orders/revenue) and New Business (new logos/growth) pipelines. Supports ad-hoc queries like 'show me Samsara across both pipelines' or 'Kyle pipeline only.' Outputs to a rolling Notion page. Use when: user asks for pipeline review, sales review, pipeline health check, deal status, rep performance, pipeline prep, or any sales pipeline analysis. Also triggers on: weekly review, pipeline update, sales summary, deal review, how is the pipeline looking."
+description: "Prepare and deliver sales pipeline reviews from Pipedrive CRM data. Default: weekly pipeline review covering Projects (orders/revenue) and New Business (new logos/growth) pipelines. Supports ad-hoc queries like 'show me Samsara across both pipelines' or 'Kyle pipeline only.' Outputs to a Notion database (one row per review). Use when: user asks for pipeline review, sales review, pipeline health check, deal status, rep performance, pipeline prep, or any sales pipeline analysis. Also triggers on: weekly review, pipeline update, sales summary, deal review, how is the pipeline looking."
 ---
 
 # Pipeline Review
@@ -22,12 +22,31 @@ If the user doesn't specify, ask:
 
 For ad-hoc requests (specific org, rep, or pipeline), skip confirmation and proceed directly.
 
-### 2. Confirm Notion Destination
+### 2. Notion Destination
 
-Ask where to store the output:
-> "Where should I put this in Notion? Give me a page URL or database, and I'll update the rolling review page."
+Reviews are stored in a **Notion database** (one row per review, newest-first):
 
-If user has a previously-used page, offer to reuse it. Skip for ad-hoc (chat-only) reviews.
+- **Database ID:** `6def2319-67ef-46a9-b03f-92e3532dd3b0`
+- **Parent page:** `2539c12100fd8015aa76d7d12074ac70` (Pipeline Review)
+- **API version:** Use `2022-06-28` (the `2025-09-03` version has issues with property creation)
+
+Each database row has these properties:
+| Property | Type | Description |
+|----------|------|-------------|
+| Week | title | e.g. "Feb 27 – Mar 05, 2026" |
+| Date | date | Review period (start + end) |
+| Projects Value | number ($) | Total open Projects pipeline |
+| Projects Weighted | number ($) | Weighted Projects pipeline |
+| NB Value | number ($) | Total open New Business pipeline |
+| NB Weighted | number ($) | Weighted New Business pipeline |
+| Won | number ($) | $ won this period |
+| Lost | number ($) | $ lost this period |
+| Deal Count | number | Total open deals (Projects + NB) |
+| Status | select | Draft / Published |
+
+The full narrative review goes in the **page body** (blocks) of each row.
+
+Skip Notion output for ad-hoc (chat-only) reviews.
 
 ### 3. Fetch Data
 
@@ -87,8 +106,8 @@ Read `references/review-template.md` for structure. Key principles:
 - Distribution of pipeline across reps — flag if one rep carries disproportionate load.
 
 **Activity Insights:**
-- Deals with no activities = biggest red flag for stale pipeline.
-- Note: deals with more activities tend to have higher close rates. Surface this pattern.
+- Deals with no activities — flag for visibility, but don't assume it means the deal is unhealthy.
+- **Data shows:** 85% of zero-activity deals end up won at Stitchi. Most wins are low-friction (reorders, inbound). High-activity deals (4-20 touches) actually have the *lowest* win rates (25-30%), signaling complexity rather than momentum. Activity logging is valuable for pipeline visibility, but low activity alone is not a red flag.
 - Overdue activities list.
 
 **Action Items:**
@@ -100,11 +119,37 @@ Read `references/review-template.md` for structure. Key principles:
 ### 6. Output
 
 **Weekly Review:**
-- Update the rolling Notion page using the Notion skill.
-- Also provide a concise summary in chat.
+1. Create a new row in the Notion database (see Step 2 for schema).
+2. Set all properties (Week, Date range, pipeline values, won/lost, deal count, Status=Published).
+3. Add the full narrative review as blocks in the page body.
+4. Provide a concise summary in chat.
+
+**Creating the Notion entry:**
+```python
+# Use Notion API version 2022-06-28
+# 1. Create page with properties
+page = POST /v1/pages {
+    "parent": {"database_id": "6def2319-67ef-46a9-b03f-92e3532dd3b0"},
+    "properties": {
+        "Week": {"title": [{"text": {"content": "Feb 27 – Mar 05, 2026"}}]},
+        "Date": {"date": {"start": "2026-02-27", "end": "2026-03-05"}},
+        "Projects Value": {"number": 469132},
+        "Projects Weighted": {"number": 191921},
+        "NB Value": {"number": 860000},
+        "NB Weighted": {"number": 428750},
+        "Won": {"number": 2306},
+        "Lost": {"number": 9750},
+        "Deal Count": {"number": 73},
+        "Status": {"select": {"name": "Published"}}
+    }
+}
+
+# 2. Add blocks to page body (batches of 100)
+PATCH /v1/blocks/{page_id}/children {"children": [...blocks...]}
+```
 
 **Ad-hoc Review:**
-- Quick summary in chat only. No Notion update.
+- Quick summary in chat only. No Notion entry.
 
 ## Review Cadence Defaults
 
@@ -141,7 +186,7 @@ These are the key health indicators for the New Business pipeline:
 2. **Stage velocity** — avg days in each stage; flag deals 2x+ above average
 3. **Bucket distribution** — healthy = mix of tiers; unhealthy = all XS/S with no L/XL
 4. **Win rate** — trailing 30-day (won / (won + lost))
-5. **Activity-to-close correlation** — note that higher-activity deals tend to close more
+5. **Activity-to-close correlation** — at Stitchi, low-activity deals win at 85%; high-activity (4-20 touches) win at only 25-30%. Use for visibility, not as a health signal.
 6. **Stage advancement rate** — what % of deals moved forward this period?
 
 ## Scheduling & Catch-Up
@@ -166,7 +211,8 @@ bash scripts/should_run_review.sh status
 
 **After every successful weekly review, always run `should_run_review.sh mark`.**
 
-Notion page ID for recurring reviews: `2539c12100fd8015aa76d7d12074ac70`
+Notion database ID for reviews: `6def2319-67ef-46a9-b03f-92e3532dd3b0`
+Notion parent page ID: `2539c12100fd8015aa76d7d12074ac70`
 
 ## Tone
 
