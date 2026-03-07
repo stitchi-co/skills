@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-03-06"
+updated_at: "2026-03-07"
 skills:
   - name: asana
     path: asana
@@ -84,6 +84,19 @@ skills:
     source: stitchi-co/skills
     status: active
     version: 1.2.9
+
+  - name: skill-creator
+    path: skill-creator
+    owner: anthropics
+    source: anthropics/skills
+    status: active
+    version: 1.0.0
+    upstream:
+      repo: https://github.com/anthropics/skills
+      ref: main
+      commit: b0cbd3df1533b396d281a6886d5132f623393a9c
+      source_path: skills/skill-creator
+      imported_at: "2026-03-07"
 
   - name: tmux-sessions
     path: tmux-sessions

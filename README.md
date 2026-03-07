@@ -44,6 +44,7 @@ scripts/import_upstream_skill.sh <repo_url> <git_ref> <source_skill_path> <targe
 | [google-workspace](./google-workspace/) | Google Workspace — Calendar, Drive (service account) |
 | [notion](./notion/) | Notion — pages, databases, blocks |
 | [pipedrive](./pipedrive/) | Pipedrive CRM — deals, contacts, orgs, activities, pipelines |
+| [skill-creator](./skill-creator/) | Build and improve Agent Skills with eval loops and benchmark tooling |
 
 ## Environment Variables
 
@@ -56,6 +57,7 @@ Most skills require API credentials via environment variables:
 | google-workspace | `GOOGLE_WORKSPACE_SERVICE_ACCOUNT_URL` |
 | notion | `NOTION_API_KEY` |
 | pipedrive | `PIPEDRIVE_API_TOKEN` |
+| skill-creator | *(none required by default; uses local Python scripts for eval tooling)* |
 
 ## Creating Skills
 
