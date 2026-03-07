@@ -1,6 +1,9 @@
 ---
 name: linkedin-content-creator
 description: "Draft LinkedIn posts for B2B founder-led personal accounts and company pages. Covers post writing, hook generation, carousel copy, and draft review/improvement. Use when asked to: write a LinkedIn post, draft founder content, brainstorm post ideas, write company page content, create a carousel, generate hooks, or review/improve a LinkedIn draft. Supports multiple authors with individual voice profiles."
+metadata:
+  author: stitchi-co
+  version: "1.0.0"
 ---
 
 # LinkedIn Content Creator

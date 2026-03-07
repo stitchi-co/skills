@@ -1,0 +1,100 @@
+version: 1
+updated_at: "2026-03-06"
+skills:
+  - name: asana
+    path: asana
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: clawddocs
+    path: clawddocs
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: front
+    path: front
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: google-workspace
+    path: google-workspace
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: humanizer
+    path: humanizer
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 2.1.1
+
+  - name: linkedin-content-creator
+    path: linkedin-content-creator
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: next-best-practices
+    path: next-best-practices
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: notion
+    path: notion
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: pinak-frontend-guru
+    path: pinak-frontend-guru
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: pipedrive
+    path: pipedrive
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: pipeline-review
+    path: pipeline-review
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: self-improving
+    path: self-improving
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.2.9
+
+  - name: tmux-sessions
+    path: tmux-sessions
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
+  - name: web-design-guidelines
+    path: web-design-guidelines
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0

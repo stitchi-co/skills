@@ -1,0 +1,15 @@
+version: 1
+sources:
+  - id: stitchi-co/skills
+    type: first-party
+    url: https://github.com/stitchi-co/skills
+    trust: high
+    import_policy: direct
+    notes: Primary source for first-party skills in this repository.
+
+  - id: anthropics/skills
+    type: external
+    url: https://github.com/anthropics/skills
+    trust: review-required
+    import_policy: selective-vendoring
+    notes: Example/library repo. Import individual skills only after audit and provenance pinning.

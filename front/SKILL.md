@@ -4,7 +4,7 @@ description: Interact with Front helpdesk via REST API. Use when checking conver
 compatibility: Requires curl and FRONT_API_TOKEN environment variable.
 metadata:
   author: stitchi-co
-  version: "1.0"
+  version: "1.0.0"
 ---
 
 # Front

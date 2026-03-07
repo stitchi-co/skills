@@ -5,7 +5,7 @@ homepage: https://developers.notion.com
 compatibility: Requires curl and NOTION_API_KEY environment variable.
 metadata:
   author: stitchi-co
-  version: "1.0"
+  version: "1.0.0"
 ---
 
 # notion
