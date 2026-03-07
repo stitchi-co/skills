@@ -4,7 +4,7 @@ description: Interact with Pipedrive CRM via REST API. Use when checking deal pi
 compatibility: Requires curl and PIPEDRIVE_API_TOKEN environment variable.
 metadata:
   author: stitchi-co
-  version: "1.0"
+  version: "1.0.0"
 ---
 
 # Pipedrive

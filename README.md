@@ -2,6 +2,15 @@
 
 Portable [Agent Skills](https://agentskills.io) for Stitchi's tool integrations.
 
+This repo now includes a lightweight architecture for governance + versioning without changing skill behavior.
+
+- Architecture: [ARCHITECTURE.md](./ARCHITECTURE.md)
+- Governance policy: [docs/GOVERNANCE.md](./docs/GOVERNANCE.md)
+- Release/versioning guide: [docs/RELEASES.md](./docs/RELEASES.md)
+- OpenClaw wiring: [docs/OPENCLAW-INTEGRATION.md](./docs/OPENCLAW-INTEGRATION.md)
+- Skill catalog: [catalog/skills.yaml](./catalog/skills.yaml)
+- Approved upstream sources: [catalog/sources.yaml](./catalog/sources.yaml)
+
 ## Install
 
 ```bash
@@ -13,6 +22,18 @@ npx skills add stitchi-co/skills --skill pipedrive
 ```
 
 Works with Claude Code, OpenClaw, Cursor, Codex, and [40+ other agents](https://skills.sh).
+
+## Architecture Ops
+
+```bash
+# Validate skill structure + catalog integrity
+python3 scripts/skill_audit.py
+# or
+make audit
+
+# Import a single upstream skill with pinned commit (review required)
+scripts/import_upstream_skill.sh <repo_url> <git_ref> <source_skill_path> <target_dir_name>
+```
 
 ## Skills
 

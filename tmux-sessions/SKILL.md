@@ -1,6 +1,9 @@
 ---
 name: tmux-sessions
 description: Create and manage tmux sessions on the fly. Use when asked to set up workspaces, terminal sessions, coding environments, or run parallel tasks in named tmux sessions. Covers create, list, attach, kill, send commands, and capture output.
+metadata:
+  author: stitchi-co
+  version: "1.0.0"
 ---
 
 # tmux-sessions

@@ -4,7 +4,7 @@ description: Interact with Asana project management via REST API. Use when check
 compatibility: Requires curl and ASANA_API_KEY environment variable.
 metadata:
   author: stitchi-co
-  version: "1.0"
+  version: "1.0.0"
 ---
 
 # Asana

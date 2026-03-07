@@ -1,6 +1,9 @@
 ---
 name: pipeline-review
 description: "Prepare and deliver sales pipeline reviews from Pipedrive CRM data. Default: weekly pipeline review covering Projects (orders/revenue) and New Business (new logos/growth) pipelines. Supports ad-hoc queries like 'show me Samsara across both pipelines' or 'Kyle pipeline only.' Outputs to a Notion database (one row per review). Use when: user asks for pipeline review, sales review, pipeline health check, deal status, rep performance, pipeline prep, or any sales pipeline analysis. Also triggers on: weekly review, pipeline update, sales summary, deal review, how is the pipeline looking."
+metadata:
+  author: stitchi-co
+  version: "1.0.0"
 ---
 
 # Pipeline Review

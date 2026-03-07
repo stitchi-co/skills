@@ -1,0 +1,39 @@
+name: Skill Quality Eval (Scaffold)
+
+on:
+  workflow_dispatch:
+    inputs:
+      skill_path:
+        description: Optional path to a specific skill folder (defaults to all)
+        required: false
+        type: string
+      profile:
+        description: Eval profile name
+        required: false
+        default: default
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  skill-quality-eval:
+    name: Skill quality eval (non-blocking scaffold)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Scaffold context
+        run: |
+          echo "Skill Quality Eval scaffold"
+          echo "skill_path=${{ github.event.inputs.skill_path }}"
+          echo "profile=${{ github.event.inputs.profile }}"
+
+      - name: TODO wire evaluator
+        run: |
+          echo "TODO: hook this to your real evaluator command"
+          echo "Example: make eval SKILL_PATH='${{ github.event.inputs.skill_path }}' PROFILE='${{ github.event.inputs.profile }}'"

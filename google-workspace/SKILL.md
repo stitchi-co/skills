@@ -4,7 +4,7 @@ description: Access Google Workspace APIs (Calendar, Drive) via service account 
 compatibility: Requires Python 3 with google-auth and google-api-python-client. Requires GOOGLE_SERVICE_ACCOUNT_FILE and GOOGLE_WORKSPACE_USER env vars.
 metadata:
   author: stitchi-co
-  version: "1.0"
+  version: "1.0.0"
 ---
 
 # Google Workspace
