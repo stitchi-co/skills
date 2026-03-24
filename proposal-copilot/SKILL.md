@@ -16,127 +16,152 @@ Stitchi's proposal sidekick for program-based proposals: company stores, recurri
 
 ## Source of Truth
 
-**Always treat stitchi.com as the source of truth** for:
-- Case studies → fetch from `https://www.stitchi.com/case-studies` (and individual study pages)
-- Company positioning, differentiators → fetch from `https://www.stitchi.com`
-- Capabilities and solutions → fetch from `https://www.stitchi.com` (explore relevant pages)
+**stitchi.com is canonical** for case studies, positioning, capabilities, and stats. Fetch live:
+- Case studies → `https://www.stitchi.com/case-studies` (and linked pages)
+- Company positioning → `https://www.stitchi.com`
 
-**Use reference files in this skill** only for:
-- Proposal template structure → `references/proposal-template.md`
-- Stakeholder persona archetypes → `references/stakeholder-personas.md`
-- Pricing, SLAs, operational details → `references/pricing-and-operations.md`
-- RFP review checklist → `references/rfp-review-checklist.md`
+**Fallback:** If stitchi.com pages are client-rendered or fail to return full content, use the headline stats from the case-studies page (Morning Brew: $70K+ savings, Porter: 5x demos, San Morello: 6 weeks implementation, RevolutionParts: 30% fulfillment reduction) and note that the user should verify these are current.
 
-The original PandaDoc proposal PDF is in `assets/company-store-proposal-template.pdf` for structural reference.
+**Reference files** (internal details not on the website):
+- `references/proposal-template.md` — current 18-section structure, custom vs boilerplate markers, PandaDoc variables
+- `references/stakeholder-personas.md` — 12 persona archetypes, tailoring guide
+- `references/pricing-and-operations.md` — hosting tiers, build packages, fulfillment rates, SLAs
+- `references/rfp-review-checklist.md` — 10 RFP requirement categories with gap analysis guidance
+- `references/competitive-positioning.md` — competitor landscape, objection handling, win themes
+- `references/discovery-framework.md` — structured discovery inputs, questions, context sources
+- `references/vertical-playbooks.md` — 7 industry playbooks with personas, language, case study mapping
+
+The original PandaDoc proposal PDF is in `assets/company-store-proposal-template.pdf`.
 
 ## Modes
 
-### 1. Draft — "Help me write a proposal for [Client]"
+### 1. Draft — "Help me write a proposal"
 
-Gather context before drafting:
-1. **Client name** (company + short name)
-2. **Primary contact** (name, title)
-3. **What you know** about their org — employee count, locations, industry, use cases, pain points
-4. **Program type** — company store, recurring kits, event support, or combination
-5. **Any discovery call notes, email threads, or meeting transcripts** (check Granola, Front, Pipedrive if available)
+**Step 1: Gather discovery inputs.**
+Read `references/discovery-framework.md`. Collect the 6 required inputs before writing. Check Pipedrive, Front, and Granola for existing intel. If inputs are thin, surface the high-value discovery questions to the user — don't draft blind.
 
-Then generate the **custom sections** in Markdown:
+**Step 2: Select vertical playbook.**
+Read `references/vertical-playbooks.md`. Identify the client's primary vertical (and secondary if applicable). Pull in industry-specific personas, language cues, merch emphasis, and objection pre-emption.
 
-**Executive Summary** (highest value):
-- Open with the client's specific priorities (not Stitchi's)
-- Map each priority to a Stitchi capability
-- Close with 5 bullet-point highlights tailored to their needs
-- Tone: consultative, confident, partnership-oriented
-- Length: 3–4 paragraphs + 5 bullets
+**Step 3: Generate custom sections.**
 
-**Stakeholder Personas & Merch Matrix**:
-- Read `references/stakeholder-personas.md` for archetypes
-- Select and customize 4–6 personas based on the client's actual org structure
-- Rename personas to fit their world (industry-appropriate names)
-- Include events column and merch ideas column
-- Add "Quick Takeaways" summary beneath the table
-- These are **end-user/stakeholder** personas, not buyer personas
+Read `references/proposal-template.md` for structure context, then generate:
 
-**Case Study Selection**:
-- Fetch current case studies from stitchi.com
-- Select 3–4 most relevant by industry, company size, use case, or program type
-- If no strong match exists, pick studies that demonstrate relevant capabilities
+**Executive Summary** — the make-or-break section. Structure:
 
-For boilerplate sections, note which template sections to include but do not rewrite them — they live in PandaDoc.
+> Stitchi is pleased to present our proposal to {Client} for a comprehensive [program type]. As a Michigan-based partner with deep expertise in branded merchandise programs, Stitchi specializes in building seamless, technology-driven solutions that simplify the way organizations [do what the client specifically needs].
+>
+> We understand {Client}'s priorities: [2–3 specific client priorities drawn from discovery]. Stitchi's approach combines [mapped capabilities] with [service differentiator].
+>
+> Key highlights of our program include:
+> - **[Client need as a header]** — [Stitchi capability that solves it, specific to their world]
+> - **[Client need]** — [Capability]
+> - **[Client need]** — [Capability]
+> - **[Client need]** — [Capability]
+> - **[Client need]** — [Capability]
+>
+> By choosing Stitchi, {Client} will gain [partnership framing, not vendor framing]. Our proven experience with [similar organizations / industry] ensures we are positioned to deliver both immediate impact and long-term value.
+
+Rules: Open with the client's world, not Stitchi's. Every bullet maps a client need to a Stitchi capability. Close on partnership. Never use "leverage", "synergy", "holistic", or "cutting-edge."
+
+**Stakeholder Personas & Merch Matrix** — read `references/stakeholder-personas.md`:
+- Pick 4–6 archetypes matching client's actual org
+- Rename for their industry (construction: "Crew Chief Carlos", healthcare: "Nurse Nina")
+- Customize events to their actual calendar and business rhythm
+- Customize merch to their brand, industry norms, and budget
+- Add "Quick Takeaways" grouped by theme
+
+**Case Study Selection** — fetch from stitchi.com, pick 3–4 by relevance:
+- Match by industry, program type, company size, or challenge
+- Read `references/vertical-playbooks.md` for recommended case study pairings
+- If no strong industry match, pick studies demonstrating the most relevant capability
+
+**Competitive Pre-emption** — read `references/competitive-positioning.md`:
+- Identify likely competitor category (large distributor, platform vendor, or local shop)
+- Weave counter-positioning into exec summary and "Why Stitchi" language
+- Don't name competitors; position against the category
+
+For boilerplate sections, output a checklist of which template sections to include (they live in PandaDoc). Flag any boilerplate sections that should be reordered or omitted for this specific client.
+
+**Step 4: Recommend section ordering.**
+Default ordering follows `references/proposal-template.md`, but adjust based on the client's decision criteria. If price sensitivity is the primary concern, move pricing earlier. If technology is the driver, lead with store features. Always keep exec summary and personas first.
 
 ### 2. Review — "Here's an RFP. What are we missing?"
 
-When given an RFP (PDF or text) and optionally the current proposal:
+Read `references/rfp-review-checklist.md` and `references/proposal-template.md`.
 
-1. **Parse the RFP** — extract all requirements, questions, and evaluation criteria
-2. **Read `references/rfp-review-checklist.md`** — map RFP requirements against Stitchi's known capabilities
-3. **Read `references/proposal-template.md`** — identify which proposal sections address which RFP requirements
-4. **Gap analysis** — produce a clear table:
+**Step 1: Parse the RFP.** Extract every requirement, question, and evaluation criterion. Identify weighted scoring criteria if provided.
 
-| RFP Requirement | Covered in Proposal? | Section | Gap / Action Needed |
-|---|---|---|---|
-| Company overview | ✅ | Who We Are | — |
-| ADA compliance | ⚠️ | Not addressed | Confirm WCAG status, add section |
-| References (3+) | ❌ | Missing | Add references section |
+**Step 2: Gap analysis table.**
 
-5. **Recommendations** — for each gap, suggest specific content or sections to add
-6. **Response structure** — when the RFP has a required outline, map Stitchi's content to that outline
+| # | RFP Requirement | Weight | Covered? | Proposal Section | Gap / Action |
+|---|---|---|---|---|---|
+| 1 | Company overview | 10% | ✅ | Who We Are | — |
+| 2 | ADA compliance | 5% | ⚠️ | Not addressed | Confirm WCAG status, add section |
+| 3 | References (3+) | 10% | ❌ | Missing | Collect 3 references, add section |
+
+Mark each: ✅ fully covered, ⚠️ partially covered, ❌ missing. Include RFP weight/priority when available.
+
+**Step 3: Scoring strategy.** For weighted RFPs, rank gaps by weight. Focus effort on high-weight uncovered items — a 20% technical section matters more than a 5% sustainability section.
+
+**Step 4: Response structure.** When the RFP has a required outline, produce a mapping from RFP sections to Stitchi content sources. When responding in Stitchi's own format, justify why the structure serves the evaluator.
+
+**Step 5: No-bid check.** Flag if the RFP contains any of these:
+- Requires capabilities Stitchi doesn't have (e.g., in-house manufacturing, specific certifications)
+- Budget clearly below viable minimums
+- Geography Stitchi can't serve
+- Timeline impossible to meet
+- Incumbent is specified or decision appears pre-made
+
+If no-bid criteria exist, surface them clearly. Don't waste effort on unwinnable deals.
 
 ### 3. Improve — "How can we make our proposal better?"
 
-Act as a proposal strategist. When asked to improve the proposal format:
+Read `references/proposal-template.md` and `references/competitive-positioning.md`.
 
-1. **Read `references/proposal-template.md`** for current structure
-2. **Critique honestly** — identify weak sections, missing opportunities, ordering issues, tone inconsistencies
-3. **Suggest additions** — new sections, better framing, competitive positioning, trend-based recommendations
-4. **Benchmark** — compare against best practices for B2B program proposals:
-   - Is the value proposition clear in the first 30 seconds of reading?
-   - Does every section earn its place?
-   - Is pricing positioned as transparent and fair (not just listed)?
-   - Are proof points (stats, case studies) placed near claims?
-   - Does it feel like a partnership pitch or a vendor catalog?
-5. **Draft improvements** — write suggested copy, not just recommendations
-6. **Update reference files** if changes are approved — keep `references/proposal-template.md` current
+Evaluate against these specific anti-patterns:
 
-## Writing Guidelines
+| Anti-Pattern | How to Detect | Fix |
+|---|---|---|
+| Vendor catalog, not partnership pitch | Generic capability lists without client framing | Reframe every feature as a client benefit |
+| Buried value prop | Exec summary doesn't land within 30 seconds of reading | Lead with client pain, not Stitchi bio |
+| Proof-claim gap | Claims without adjacent proof points | Move case studies / stats next to related claims |
+| Price shock | Pricing appears without context or value framing | Add ROI framing or "what this replaces" context |
+| Section bloat | 18 sections is a lot — some may not earn their place | For smaller deals, recommend which sections to cut |
+| Stale differentiators | "Passion for quality" is generic | Sharpen to specific, provable claims |
+| Missing competitive awareness | No reason to choose Stitchi over alternatives | Add subtle counter-positioning per `references/competitive-positioning.md` |
+| Weak close | Signature page without urgency or next steps | Add "What happens next" section before signature |
 
-### Tone
-- Consultative, not salesy
-- Confident, not arrogant
-- Partnership-oriented: "we're your merch team, not a swag vendor"
-- Detroit pride is a cultural differentiator — use it naturally, don't force it
-- Avoid: "leverage", "synergy", "holistic", "cutting-edge", generic B2B buzzwords
+For each finding: describe the issue, show the current state, and draft the improved version. Don't just recommend — write the copy.
 
-### Executive Summary Pattern
-```
-[Client]'s priorities: [2-3 sentences about THEIR world, THEIR challenges]
+When improvements are approved, update the relevant reference files so they compound.
 
-Stitchi's approach: [2-3 sentences mapping our solution to their priorities]
+## Proposal Pacing Guide
 
-Key highlights:
-• [Benefit framed around client need] — [Stitchi capability that delivers it]
-• [Benefit] — [Capability]
-• [Benefit] — [Capability]
-• [Benefit] — [Capability]
-• [Benefit] — [Capability]
+| Client Size / Deal | Recommended Depth |
+|---|---|
+| Enterprise, $100K+ annual, formal RFP | Full 18 sections, max depth on custom sections |
+| Mid-market, $25K–100K, semi-formal | Full structure, lighter on warehousing/fulfillment detail |
+| Growth-stage, under $25K, informal | Streamlined: Exec Summary, Personas, Why Stitchi, Pricing, Case Studies, Onboarding, Signature. Skip feature grids and warehousing detail. |
 
-Closing: [1 sentence about partnership and long-term value]
-```
+## Writing Rules
 
-### Persona Naming
-- Use alliterative names matching the persona's role context
-- Make them memorable and relevant to the client's industry
-- Construction: "Crew Chief Carlos", not "Employee Emma"
-- Healthcare: "Nurse Nina", not "Field Frank"
-- Tech: "Developer Dev", not "Employee Emma"
+- Consultative, not salesy. Confident, not arrogant.
+- "We're your merch team, not a swag vendor" — partnership language throughout.
+- Detroit pride is a real differentiator. Use it naturally.
+- Open every custom section with the client's context, not Stitchi's.
+- Banned words: "leverage", "synergy", "holistic", "cutting-edge", "utilize", "facilitate", "empower".
+- Alliterative persona names, industry-appropriate ("Crew Chief Carlos" not "Employee Emma").
+- Stats and proof points adjacent to claims, not isolated in their own section.
 
-## Updating This Skill
+## Evolving This Skill
 
-This skill is designed to evolve. When proposal improvements are approved:
-1. Update `references/proposal-template.md` with structural changes
-2. Update `references/stakeholder-personas.md` with new archetypes
-3. Update `references/pricing-and-operations.md` when rates or SLAs change
-4. Update `references/rfp-review-checklist.md` when new RFP patterns emerge
-5. Keep this file's workflow instructions current
+This skill improves with use. After each proposal:
+1. Update `references/proposal-template.md` if structural changes were made
+2. Add new persona archetypes to `references/stakeholder-personas.md`
+3. Add new vertical playbooks to `references/vertical-playbooks.md`
+4. Log new objections or competitor intel in `references/competitive-positioning.md`
+5. Add new RFP patterns to `references/rfp-review-checklist.md`
+6. Update `references/pricing-and-operations.md` when rates or SLAs change
 
-Do NOT duplicate content from stitchi.com into reference files. If it's on the website, fetch it live.
+Never duplicate stitchi.com content into reference files.

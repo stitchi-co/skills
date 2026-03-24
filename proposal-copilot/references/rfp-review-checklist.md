@@ -114,6 +114,19 @@ Use this when reviewing an RFP against Stitchi's proposal to identify gaps, requ
 
 **Stitchi note:** Current proposal includes T&C, Privacy Policy, and DPA references in signature section.
 
+## No-Bid Criteria
+
+Before investing time in an RFP response, check for deal-breakers:
+
+- **Required capabilities Stitchi lacks** — in-house manufacturing, specific industry certifications not held, proprietary technology requirements
+- **Budget clearly below minimum** — if the RFP signals annual spend well under $10K, the program economics don't work
+- **Geography Stitchi can't serve** — international-only programs with no US component (fulfillment is US-based with international shipping, not international warehousing)
+- **Impossible timeline** — RFP response due in under 3 business days for a complex submission
+- **Pre-decided outcome** — incumbent is named favorably, evaluation criteria are suspiciously specific to one vendor, or the RFP is a formality for a decision already made
+- **Scope mismatch** — RFP is for one-off project orders, not a program; or for services Stitchi doesn't offer (graphic design agency work, print brokering without program management)
+
+If any of these apply, recommend a no-bid with reasoning. Don't waste cycles on unwinnable deals.
+
 ## RFP Response Strategy
 
 **When a formal RFP exists:**

@@ -85,8 +85,10 @@ Premium adds: group passcode, IP restrictions, Avalara tax, SSO (Google/JSON/SAM
 | Escalation path | AM → Operations Lead → Executive Sponsor |
 | Order turnaround | 36 hours (24-hour average) |
 
-## Key Stats (update periodically)
+## Key Stats
 
+**Do not hardcode stats in proposals.** Fetch current numbers from stitchi.com at draft time.
+If stitchi.com is unavailable, these were the last-known values (2026-03-23) — flag as needing verification:
 - 175,000+ items fulfilled
 - 500 vetted suppliers
 - 22 manufacturing partners
