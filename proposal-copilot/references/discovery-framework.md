@@ -23,11 +23,11 @@ Before drafting any proposal, gather these inputs. The quality of custom section
 
 ## Context Sources (check these for intel)
 
-- **Pipedrive** — deal record, notes, custom fields (account tier, opportunity type)
-- **Front** — email threads with the prospect
-- **Granola** — meeting transcripts from discovery calls
+- **CRM** — deal record, notes, custom fields (account tier, opportunity type)
+- **Email / helpdesk** — threads with the prospect
+- **Meeting notes** — transcripts from discovery calls
 - **LinkedIn** — company size, recent news, hiring patterns (signals growth)
-- **Company website** — about page, careers page (for org structure hints), press releases
+- **Client's website** — about page, careers page (for org structure hints), press releases
 
 ## Discovery Questions (for live calls or to guide email)
 
