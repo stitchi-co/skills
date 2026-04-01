@@ -139,4 +139,67 @@ fetch_activities "0" > "$OUTPUT_DIR/activities_upcoming.json"
 echo "Fetching activities (completed)..." >&2
 fetch_activities "1" > "$OUTPUT_DIR/activities_done.json"
 
+# Fetch changelog (stage changes) for all open deals across both pipelines
+fetch_deal_changelogs() {
+  local deals_file="$1"
+  local output_file="$2"
+  local all="[]"
+  local count=0
+  local total
+  total=$(jq length "$deals_file")
+
+  echo "Fetching changelogs for $total deals..." >&2
+  while IFS= read -r deal_id; do
+    count=$((count + 1))
+    if (( count % 10 == 0 )); then
+      echo "  ... $count / $total" >&2
+    fi
+    local resp
+    resp=$(curl -sf "${BASE}/deals/${deal_id}/changelog?api_token=${API_TOKEN}&limit=100" 2>/dev/null || echo '{"data":[]}')
+    # Extract only stage_id changes, tag with deal_id
+    local stage_changes
+    stage_changes=$(echo "$resp" | jq --arg did "$deal_id" '[(.data // [])[] | select(.field_key == "stage_id") | . + {deal_id: ($did | tonumber)}]')
+    if [[ "$stage_changes" != "[]" ]]; then
+      all=$(echo "$all" "$stage_changes" | jq -s '.[0] + .[1]')
+    fi
+    # Rate limit: ~10 calls/sec to stay safe
+    sleep 0.1
+  done < <(jq -r '.[].id' "$deals_file")
+
+  echo "$all" > "$output_file"
+  echo "  Fetched $count changelogs, $(jq length "$output_file") stage changes found" >&2
+}
+
+# Build combined open deals file for changelog fetch
+echo "Fetching deal changelogs for stage movement tracking..." >&2
+COMBINED_OPEN="/tmp/pipeline-review-combined-open.json"
+if [[ "$PIPELINE" == "both" ]]; then
+  jq -s '.[0] + .[1]' "$OUTPUT_DIR/projects_open.json" "$OUTPUT_DIR/newbiz_open.json" > "$COMBINED_OPEN"
+elif [[ "$PIPELINE" == "projects" ]]; then
+  cp "$OUTPUT_DIR/projects_open.json" "$COMBINED_OPEN"
+else
+  cp "$OUTPUT_DIR/newbiz_open.json" "$COMBINED_OPEN"
+fi
+
+# Also include won+lost deals (they may have had stage changes before closing)
+if [[ "$PIPELINE" == "both" || "$PIPELINE" == "projects" ]]; then
+  if [[ -f "$OUTPUT_DIR/projects_won.json" && -f "$OUTPUT_DIR/projects_lost.json" ]]; then
+    jq -s '.[0] + .[1] + .[2]' "$COMBINED_OPEN" "$OUTPUT_DIR/projects_won.json" "$OUTPUT_DIR/projects_lost.json" > "${COMBINED_OPEN}.tmp"
+    mv "${COMBINED_OPEN}.tmp" "$COMBINED_OPEN"
+  fi
+fi
+if [[ "$PIPELINE" == "both" || "$PIPELINE" == "newbiz" ]]; then
+  if [[ -f "$OUTPUT_DIR/newbiz_won.json" && -f "$OUTPUT_DIR/newbiz_lost.json" ]]; then
+    jq -s '.[0] + .[1] + .[2]' "$COMBINED_OPEN" "$OUTPUT_DIR/newbiz_won.json" "$OUTPUT_DIR/newbiz_lost.json" > "${COMBINED_OPEN}.tmp"
+    mv "${COMBINED_OPEN}.tmp" "$COMBINED_OPEN"
+  fi
+fi
+
+# Deduplicate by deal ID
+jq '[group_by(.id)[] | .[0]]' "$COMBINED_OPEN" > "${COMBINED_OPEN}.tmp"
+mv "${COMBINED_OPEN}.tmp" "$COMBINED_OPEN"
+
+fetch_deal_changelogs "$COMBINED_OPEN" "$OUTPUT_DIR/deal_stage_changes.json"
+rm -f "$COMBINED_OPEN"
+
 echo "$OUTPUT_DIR"

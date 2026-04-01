@@ -96,11 +96,12 @@ Read `references/review-template.md` for structure. Key principles:
 **New Business Pipeline:**
 - Bucket distribution: Are we pursuing the right-sized accounts?
 - Stage velocity: Average days in each stage. Flag outliers.
-- Stage movement this period: Which deals advanced? (Signal of progress.)
+- Stage movement this period: Use `new_business_stage_movement` from the analysis output — these are real stage_id changes from Pipedrive's changelog API, showing from → to transitions with direction (forward/backward). Not an update_time proxy.
 - Win rate: Trailing 30-day conversion.
 - Concentration risk: Any org >15% of weighted pipeline.
 
 **Projects Pipeline:**
+- Stage movement this period: Use `projects_stage_movement` from the analysis output — same changelog-based tracking as NB. Shows which deals advanced (or regressed) stages this week with from → to transitions.
 - Stage breakdown with top deals by value.
 - Overdue close dates: List with days overdue. These need date updates or closure.
 - Zero-value deals: Flag for pricing (especially events/scheduled items).

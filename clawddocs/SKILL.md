@@ -1,9 +1,6 @@
 ---
 name: clawddocs
 description: Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features
-metadata:
-  author: stitchi-co
-  version: "1.0.0"
 ---
 
 # Clawdbot Documentation Expert

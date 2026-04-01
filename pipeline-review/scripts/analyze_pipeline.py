@@ -317,8 +317,75 @@ def analyze_activities(upcoming, done, deals, now, review_days):
     }
 
 
+def analyze_stage_movement(all_deals, stage_changes, stages_map, pipeline_id, week_start, week_end):
+    """Identify deals with actual stage_id changes during the review week using changelog data.
+
+    Args:
+        all_deals: List of all deals (open + won + lost) for this pipeline.
+        stage_changes: List of changelog entries with field_key=='stage_id' and deal_id.
+        stages_map: Stage ID -> {name, prob, order} mapping for this pipeline.
+        pipeline_id: Pipeline ID to filter deals.
+        week_start: Start of review week (datetime).
+        week_end: End of review week (datetime).
+
+    Returns:
+        List of stage movement records with from/to stage names and timestamps.
+    """
+    # Build deal lookup
+    deal_map = {}
+    for d in all_deals:
+        if d.get("pipeline_id") == pipeline_id:
+            deal_map[d.get("id")] = d
+
+    movements = []
+    for change in stage_changes:
+        change_time = parse_dt(change.get("time"))
+        if not change_time or not (week_start <= change_time <= week_end):
+            continue
+
+        deal_id = change.get("deal_id")
+        deal = deal_map.get(deal_id)
+        if not deal:
+            continue
+
+        old_stage_id = int(change.get("old_value", 0)) if change.get("old_value") else None
+        new_stage_id = int(change.get("new_value", 0)) if change.get("new_value") else None
+
+        old_stage_name = stages_map.get(old_stage_id, {}).get("name", f"Unknown({old_stage_id})") if old_stage_id else "New"
+        new_stage_name = stages_map.get(new_stage_id, {}).get("name", f"Unknown({new_stage_id})") if new_stage_id else "Unknown"
+
+        # Determine direction: forward, backward, or lateral
+        old_order = stages_map.get(old_stage_id, {}).get("order", 0) if old_stage_id else 0
+        new_order = stages_map.get(new_stage_id, {}).get("order", 0) if new_stage_id else 0
+        if new_order > old_order:
+            direction = "forward"
+        elif new_order < old_order:
+            direction = "backward"
+        else:
+            direction = "lateral"
+
+        movements.append({
+            "deal_id": deal_id,
+            "title": deal.get("title", f"Deal {deal_id}"),
+            "value": deal.get("value", 0),
+            "org": deal.get("org_name"),
+            "owner": deal.get("owner_name"),
+            "from_stage": old_stage_name,
+            "to_stage": new_stage_name,
+            "direction": direction,
+            "change_time": change.get("time"),
+        })
+
+    # Sort: forward first, then by time
+    direction_order = {"forward": 0, "lateral": 1, "backward": 2}
+    movements.sort(key=lambda m: (direction_order.get(m["direction"], 9), m.get("change_time", "")))
+
+    return movements
+
+
 def analyze_newbiz_stage_movement(open_deals, week_start, week_end):
-    """Flag New Business deals that moved stages during the review week (based on update_time as proxy)."""
+    """Legacy fallback: flag NB deals updated during review week (update_time proxy).
+    Used only when changelog data is not available."""
     recently_updated = []
     for d in open_deals:
         ut = parse_dt(d.get("update_time"))
@@ -445,6 +512,8 @@ def main():
     activities_upcoming = load_json(os.path.join(data_dir, "activities_upcoming.json"))
     activities_done = load_json(os.path.join(data_dir, "activities_done.json"))
     users = load_json(os.path.join(data_dir, "users.json"))
+    stage_changes = load_json(os.path.join(data_dir, "deal_stage_changes.json"))
+    has_changelog = len(stage_changes) > 0 or os.path.exists(os.path.join(data_dir, "deal_stage_changes.json"))
 
     # Apply filters
     def apply_filters(deals):
@@ -487,8 +556,22 @@ def main():
         output["new_business_health"] = analyze_newbiz_health(
             newbiz_open, newbiz_won, newbiz_lost, NEWBIZ_STAGES, now, args.trend_days
         )
-        output["new_business_stage_movement"] = analyze_newbiz_stage_movement(
-            newbiz_open, week_start, week_end
+        if has_changelog:
+            all_newbiz = newbiz_open + newbiz_won + newbiz_lost
+            output["new_business_stage_movement"] = analyze_stage_movement(
+                all_newbiz, stage_changes, NEWBIZ_STAGES, NEWBIZ_PIPELINE_ID, week_start, week_end
+            )
+        else:
+            # Legacy fallback when changelog data not available
+            output["new_business_stage_movement"] = analyze_newbiz_stage_movement(
+                newbiz_open, week_start, week_end
+            )
+
+    # Projects stage movement (new — only available with changelog data)
+    if args.filter_pipeline != "newbiz" and has_changelog:
+        all_projects = projects_open + projects_won + projects_lost
+        output["projects_stage_movement"] = analyze_stage_movement(
+            all_projects, stage_changes, PROJECTS_STAGES, PROJECTS_PIPELINE_ID, week_start, week_end
         )
 
     # Activities

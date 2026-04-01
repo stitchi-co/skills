@@ -22,7 +22,14 @@ Generated: {timestamp}
 ### Overview
 - Total open deals: X ($XXK total, $XXK weighted)
 - Win rate (trailing {trend_days} days): X%
-- Stage movement this week: list deals that advanced
+
+### Stage Movement This Week
+Source: `new_business_stage_movement` (from Pipedrive changelog API — actual stage_id changes, not update_time proxy).
+- List each deal that changed stages, showing **from → to** transition
+- Group by direction: ✅ Forward moves first, then ⬅️ Backward moves (if any)
+- Include deal value and owner
+- If no stage changes occurred, say "No stage movement this week"
+- Example: "**Samsara - Marketing Operations** ($250K, Kyle) — Discovery → Proposal"
 
 ### Bucket Distribution
 - Table or list: tier → count, total value
@@ -42,13 +49,22 @@ For each stage (Discovery → Proposal → Negotiation):
 ### Period Comparison (Fri–Thu boundaries)
 - This week won/lost vs. previous week won/lost (count + value)
 - Trailing {trend_days} day trend (rolling, for directional context)
-- Movement: which deals advanced stages this week?
 
 ## Projects Pipeline
 ### Overview
 - Total open deals: X ($XXK total, $XXK weighted)
 - In Production value: $XXK
 - Approved/ready for production: $XXK
+
+### Stage Movement This Week
+Source: `projects_stage_movement` (from Pipedrive changelog API — actual stage_id changes).
+- List each deal that changed stages, showing **from → to** transition
+- Group by direction: ✅ Forward moves first, then ⬅️ Backward moves (if any)
+- Deals that moved multiple times in the week get one line per transition (shows velocity)
+- Include deal value and owner
+- If no stage changes occurred, say "No stage movement this week"
+- Example: "**Samsara YETI Coolers** ($3.2K, Kyle) — Request → Quoted → Approved"
+- Tip: When a deal has multiple transitions, collapse into a chain for readability
 
 ### Stage Breakdown
 For each stage (Scheduled → Request → Quoted → Approved → In Production):
