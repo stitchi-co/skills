@@ -29,6 +29,13 @@ skills:
     status: active
     version: 1.0.0
 
+  - name: investor-updates
+    path: investor-updates
+    owner: stitchi-co
+    source: stitchi-co/skills
+    status: active
+    version: 1.0.0
+
   - name: humanizer
     path: humanizer
     owner: stitchi-co
