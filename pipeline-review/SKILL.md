@@ -87,6 +87,24 @@ python3 scripts/analyze_pipeline.py "$DATA_DIR" --type adhoc --filter-rep "Kyle"
 python3 scripts/analyze_pipeline.py "$DATA_DIR" --type adhoc --filter-pipeline newbiz
 ```
 
+### 4b. Extract Notion Properties (mandatory)
+
+**Before composing the review**, extract the Notion database properties from the analysis output:
+
+```bash
+python3 scripts/extract_notion_properties.py /tmp/pipeline-review-data/analysis.json
+```
+
+This outputs the exact `properties` JSON to use when creating the Notion page, plus a `_summary` with human-readable won/lost values and deal lists. **Use these values directly** — do not manually type won/lost numbers. This prevents transcription errors.
+
+Save the analysis to a file first:
+```bash
+python3 scripts/analyze_pipeline.py "$DATA_DIR" --type weekly --days 7 --trend-days 30 > /tmp/pipeline-review-data/analysis.json
+python3 scripts/extract_notion_properties.py /tmp/pipeline-review-data/analysis.json > /tmp/pipeline-review-data/notion_properties.json
+```
+
+Then use `notion_properties.json` when creating the Notion page and composing the Won/Lost sections of the narrative.
+
 ### 5. Compose the Review
 
 Read `references/review-template.md` for structure. Key principles:
